@@ -2062,6 +2062,10 @@ def api_get_scrapystat():
         if len(mLines) > 0:
             targetLine = mLines[-1]
             file_object.close()
+            if targetLine.split(' ')[0]=='OK':
+                curr_path = os.path.abspath(os.path.dirname(__file__))
+                url1 = curr_path + rootpath + usrname + "/" + taskname + "/data" 
+                setchanged(url1+'/', 'filelist', 1)
             # print targetLine
             return targetLine
         else:
