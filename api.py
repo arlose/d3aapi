@@ -99,6 +99,7 @@ trainparamsfile = "/trainparams.json"
 dirl = "./static/"
 exampledir = rootpath+"example"
 docname = "doc.txt"
+scrapylogfile = 'scrapy.log'
 
 notpassreasonfilename = 'reason.list'
 
@@ -1975,7 +1976,7 @@ def api_upload_scrapyimg():
         # new threads
         # scrapyimg(filepath, engine, keyword, start, num)
         argument = " tools/scrapy.py %s %s %s %d %d"%(filepath, engine,  keyword, start, num)
-        # print argument
+        print argument
         proc = subprocess.Popen("python" + argument, stdout=subprocess.PIPE,stderr=subprocess.STDOUT, shell=True)
         # print 'subprocess'
 
@@ -2054,7 +2055,13 @@ def api_get_scrapystat():
     args = get_parser.parse_args()
     usrname = args.get('usrname')
     taskname = args.get('taskname')
-    return "scrapying..."
+    file_object = open(scrapylogfile)
+    mLines = file_object.readlines()
+    print mLines
+    targetLine = mLines[-1]
+    file_object.close()
+    print targetLine
+    return targetLine
 
 @app.route('/api/delsamefile', methods = ['GET'])
 def api_del_sameimg():
