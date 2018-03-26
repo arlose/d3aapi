@@ -1,0 +1,56 @@
+http://blog.csdn.net/lxh090821/article/details/9410943
+
+登陆mysql
+mysql -u root -p
+
+列出数据库
+show databases;
+
+
+create database ImageServer;
+
+选择数据库
+use ImageServer;
+
+列出表格
+show tables;
+
+
+desc 表名称;
+
+赋予任何主机访问数据的权限
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password' WITH GRANT OPTION;
+
+修改生效
+FLUSH PRIVILEGES; 
+
+
+添加表
+CREATE TABLE Workers(id int(4) UNSIGNED AUTO_INCREMENT,  name char(100) NOT NULL, status int(4) NOT NULL, GPUMemery char(100),taskname char(100), updatetime char(100),PRIMARY KEY ( id ) );
+CREATE TABLE Users(id int(4) UNSIGNED AUTO_INCREMENT, name char(100) NOT NULL, email char(100) NOT NULL, passwd char(100) NOT NULL, active int(4), level int(4), groups char(100), PRIMARY KEY(id));
+
+create table Operations(id int(4) UNSIGNED AUTO_INCREMENT, operation char(255), updatetime char(100), PRIMARY KEY ( id ));
+
+插入
+insert into Workers(name,status, GPUMemery, updatetime)values('worker1','0','2048/8192', u'2017-08-02 09:43:12');
+insert into Users(name,email, passwd, active, level, groups)values('fj','fengjie@codvision.com','1q2w3e4r', 1, 3, 'Super');
+
+更新
+update Workers set taskname="None" where name="worker1";
+
+清空
+delete from Operations;
+
+添加列
+alter table Tasks add(workerpid int(4));
+
+修改列名
+alter table Tasks change column excluswoker exclusworker int(4);
+
+删除行
+delete from Tasks where name = xxx;
+
+选择某些行
+SELECT * FROM table LIMIT 5,10;  // 检索记录行 6-15
+select * from Operations order by id desc limit 30;
+select * from Users where name = "fj" order by id desc limit 0, 100;

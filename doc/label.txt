@@ -1,0 +1,16 @@
+检测数据标记格式说明
+
+数据为json格式，主要分为两个部分：length和objects，length记录当前图片有多少个标注对象，objects为对应的各个对象标注信息。注：length信息应与objects数量一致
+
+详细说明如下：
+length字段为int类型，为当前标注对象数目
+objects字段为数组，每个数组中包含六个子部分：tag, x_start, x_end, y_start, y_end, info，六个子部分用来确定一个标注的所有信息
+tag为方便多标签设置为数组类型，数组中元素类型为字符串，表明一个标注对象的标签，同一对象可以有多个标签，只要在该数组中添加元素即可
+x_start为float类型，为标注对象左上角x坐标与整个图像宽度的比值，保留三位小数
+x_end为float类型，为标注对象右下角x坐标与整个图像宽度的比值，保留三位小数
+y_start为float类型，为标注对象左上角y坐标与整个图像高度的比值，保留三位小数
+y_end为float类型，为标注对象右下角y坐标与整个图像高度的比值，保留三位小数
+info为字符串类型，为辅助信息，可添可不添
+
+示例如下：
+{"length": 6, "objects": [{"info": "\u6d59AQT885", "x_start": 0.67, "x_end": 0.713, "y_end": 0.565, "tag": ["blueplate"], "y_start": 0.543}, {"info": "\u6d59AQT063", "x_start": 0.398, "x_end": 0.435, "y_end": 0.498, "tag": ["blueplate","big"], "y_start": 0.473}, {"info": "\u6d59ASL956", "x_start": 0.961, "x_end": 0.988, "y_end": 0.207, "tag": ["blueplate"], "y_start": 0.188}, {"info": "\u6d59AJ2287", "x_start": 0.552, "x_end": 0.579, "y_end": 0.093, "tag": ["blueplate"], "y_start": 0.077}, {"info": "", "x_start": 0.435, "x_end": 0.465, "y_end": 0.055, "tag": ["blueplate"], "y_start": 0.045}, {"info": "", "x_start": 0.678, "x_end": 0.706, "y_end": 0.023, "tag": ["blueplate"], "y_start": 0.012}]}

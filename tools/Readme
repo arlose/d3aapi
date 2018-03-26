@@ -1,0 +1,10 @@
+cat.py 从检测数据库中提取特定一个标签的图片和对应的标注
+xml2txt.py 从VOC2007格式转换成当前格式label
+genlabel.py 从分类数据文件夹生成data数据和相应格式label，并生成tag.json
+gentag.py 从分类数据文件夹生成tag.json
+hanzi2pingyin.py 将当前文件夹中的中文文件名改为拼音文件名
+encodepng.py 将语义分割标注的txt文件转化为png文件
+imagepixel.py 读取图片，显示鼠标所在位置的像素信息，主要用来查看图像分割中的mask标记
+skipimg.py 将某一目录下的重复或近似图片剔除，删除相近图片后保留标记过的hash文件 用法示例 python skipimg.py 绝对目录 
+deformation.py 对图像和相应的标记图像进行变形处理 用法示例 python deformation.py 图像文件 相应标记图像文件 生成张数 
+kcftracker.py 根据img1的标注使用跟踪算法自动预测img2的标注，并生成相应文件 用法示例 python kcftracker.py img1 img2
