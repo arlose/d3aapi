@@ -2056,12 +2056,17 @@ def api_get_scrapystat():
     usrname = args.get('usrname')
     taskname = args.get('taskname')
     file_object = open(scrapylogfile)
-    mLines = file_object.readlines()
-    print mLines
-    targetLine = mLines[-1]
-    file_object.close()
-    print targetLine
-    return targetLine
+    if file_object:
+        mLines = file_object.readlines()
+        # print mLines
+        if len(mLines) > 0:
+            targetLine = mLines[-1]
+            file_object.close()
+            # print targetLine
+            return targetLine
+        else:
+            return 'scrapying...'
+    return 'labeling...'
 
 @app.route('/api/delsamefile', methods = ['GET'])
 def api_del_sameimg():
